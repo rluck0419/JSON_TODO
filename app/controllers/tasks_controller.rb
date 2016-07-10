@@ -3,6 +3,26 @@ class TasksController < ApplicationController
     render json: Task.all, status: 200
   end
 
+  def completed
+    completed = []
+    Task.all.each do |task|
+      if task.completed
+        completed << task
+      end
+    end
+    render json: completed, status: 200
+  end
+
+  def incomplete
+    incomplete = []
+    Task.all.each do |task|
+      unless task.completed
+        incomplete << task
+      end
+    end
+    render json: incomplete, status: 200
+  end
+
   def show
     if Task.exists?(params[:id])
       render json: Task.find(params[:id]), status: 200

@@ -7,9 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 10.times do
-  Task.new(body: "Some body stuff is in here.")
-end
-
-10.times do
-  List.new(title: "This Title Here")
+  list = List.create!(title: "This Title Here")
+  10.times do
+    Task.create!(body: "Some body stuff is in here.", list_id: list.id)
+  end
 end
